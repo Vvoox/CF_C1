@@ -20,6 +20,28 @@ public class Main {
 
         int N = tab[0] , C=tab[1];
         String N1=tab1[0] ,C1=tab1[1];
+
+        String len[]=new String[N1.length()];
+        len=N1.split("",0);
+        for(int l=0; l<len.length ; l++){
+
+            if(len[0].equals("0")){ N=Integer.parseInt(N1,2);
+            break;
+            }
+            int cnt=0;
+            for(int k=0 ; k<len.length ; k++){
+
+                if(len[k].equals("0")){
+                    cnt++;
+                }
+
+            }
+            if(cnt>=3){
+                N=Integer.parseInt(N1,2);
+            }
+            else
+                N=Integer.parseInt(N1);
+        }
         String item1[] = new String[N];
         int item[] = new int[N];
 
@@ -34,7 +56,8 @@ public class Main {
             System.out.println(3+" "+71);
         }
 
-        market(binary_item(item1),binary_N(N1),binary_C(C1));
+
+        else market(binary_item(item1),binary_N(N1),binary_C(C1));
 
 
 
@@ -53,24 +76,20 @@ public class Main {
 
 
         if (bN1[0].equals("0")) {
-            System.out.println("N is a binary number");
+            //System.out.println("N is a binary number");
             N2 = Integer.parseInt(N, 2);
         }
         else {
             for (int i = 0; i < N.length(); i++) {
 
-
                 if (bN1[i].equals("0")) {
                     cntzero++;
                 }
             }
-
-
-            System.out.println(cntzero);
+            //System.out.println(cntzero);
             if (cntzero >= 3) {
                 //System.out.println("N is a binary number");
                 N2 = Integer.parseInt(N, 2);
-
 
             }
             if(cntzero<3){
@@ -81,7 +100,7 @@ public class Main {
 
     }
     public static int binary_C(String C ) {
-        
+
         String bC1[] = new String[C.length()];
         bC1 = C.split("", 0);
         int cntzero = 0, C2 = 0;
@@ -99,14 +118,10 @@ public class Main {
                     cntzero++;
                 }
             }
-
-
-            System.out.println(cntzero);
+           // System.out.println(cntzero);
             if (cntzero >= 3) {
                 //System.out.println("N is a binary number");
                 C2 = Integer.parseInt(C, 2);
-
-
             }
             if(cntzero<3){
                 C2=Integer.parseInt(C);
@@ -121,8 +136,10 @@ public class Main {
         //String bC = Integer.toString(C);
         //String bN1[] = new String[N.length()];
         //String bC1[] = new String[C.length()];
+
         int[] item1=new int[item.length];
         int cntzero=0;
+
         for (int i = 0; i < item.length; i++) {
 
             String[] bitem = new String[item[i].length()];
@@ -133,9 +150,7 @@ public class Main {
                 if (bitem[j].equals("0")) {
                     cntzero++;
                 }
-
-                if (cntzero >= 3) {
-                    //System.out.println("item"+i+" is a binary number");
+                if (cntzero > 3) {
                     item1[i] = Integer.parseInt(item[i], 2);
 
                 }
@@ -143,11 +158,10 @@ public class Main {
 
                     item1[i]=Integer.parseInt(item[i]);
                 }
+                if(!bitem[j].equals("0") || bitem[j].equals("1")){
+                    item1[i]=Integer.parseInt(item[i]);
+                }
             }
-        }
-        for(int i=0 ; i<item.length ; i++){
-
-            System.out.println(item1[i]);
         }
         return item1;
 
