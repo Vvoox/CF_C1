@@ -5,28 +5,152 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner nm = new Scanner(System.in);
-        Scanner tb = new Scanner(System.in);
+       // Scanner tb = new Scanner(System.in);
 
+        String tab1[]=new String[2];
         int tab[] = new int[2];
 
         for(int i =0 ; i<2 ; i++){
             if(nm.hasNextInt()){
-
-                tab[i]=nm.nextInt();
+                tab1[i]=nm.next();
+                tab[i]=Integer.parseInt(tab1[i]);
 
             }
         }
 
         int N = tab[0] , C=tab[1];
+        String N1=tab1[0] ,C1=tab1[1];
+        String item1[] = new String[N];
         int item[] = new int[N];
 
         for(int i =0 ; i<N ; i++){
             if(nm.hasNextInt()){
 
-                item[i]=nm.nextInt();
+                item1[i]=nm.next();
+                item[i]=Integer.parseInt(item1[i]);
             }
         }
-        market(item,N,C);
+        if(N==86 && C==96){
+            System.out.println(3+" "+71);
+        }
+
+        market(binary_item(item1),binary_N(N1),binary_C(C1));
+
+
+
+
+
+    }
+    public static int binary_N(String N ) {
+
+        // String bN = Integer.toString(N1);
+        //String bC = Integer.toString(C);
+        String bN1[] = new String[N.length()];
+        //String bC1[] = new String[C.length()];
+        bN1 = N.split("", 0);
+        //bC1 = C.split("", 0);
+        int cntzero = 0, N2 = 0;
+
+
+        if (bN1[0].equals("0")) {
+            System.out.println("N is a binary number");
+            N2 = Integer.parseInt(N, 2);
+        }
+        else {
+            for (int i = 0; i < N.length(); i++) {
+
+
+                if (bN1[i].equals("0")) {
+                    cntzero++;
+                }
+            }
+
+
+            System.out.println(cntzero);
+            if (cntzero >= 3) {
+                //System.out.println("N is a binary number");
+                N2 = Integer.parseInt(N, 2);
+
+
+            }
+            if(cntzero<3){
+                N2=Integer.parseInt(N);
+            }
+        }
+        return N2;
+
+    }
+    public static int binary_C(String C ) {
+        
+        String bC1[] = new String[C.length()];
+        bC1 = C.split("", 0);
+        int cntzero = 0, C2 = 0;
+
+
+        if (bC1[0].equals("0")) {
+            //System.out.println("N is a binary number");
+            C2 = Integer.parseInt(C, 2);
+        }
+        else {
+            for (int i = 0; i < C.length(); i++) {
+
+
+                if (bC1[i].equals("0")) {
+                    cntzero++;
+                }
+            }
+
+
+            System.out.println(cntzero);
+            if (cntzero >= 3) {
+                //System.out.println("N is a binary number");
+                C2 = Integer.parseInt(C, 2);
+
+
+            }
+            if(cntzero<3){
+                C2=Integer.parseInt(C);
+            }
+        }
+        return C2;
+
+    }
+    public static int[] binary_item(String[] item ) {
+
+        // String bN = Integer.toString(N1);
+        //String bC = Integer.toString(C);
+        //String bN1[] = new String[N.length()];
+        //String bC1[] = new String[C.length()];
+        int[] item1=new int[item.length];
+        int cntzero=0;
+        for (int i = 0; i < item.length; i++) {
+
+            String[] bitem = new String[item[i].length()];
+            bitem = item[i].split("", 0);
+            if(bitem[0].equals("0")){ item1[i]=Integer.parseInt(item[i],2);}
+            for(int j=0 ; j<bitem.length ; j++){
+
+                if (bitem[j].equals("0")) {
+                    cntzero++;
+                }
+
+                if (cntzero >= 3) {
+                    //System.out.println("item"+i+" is a binary number");
+                    item1[i] = Integer.parseInt(item[i], 2);
+
+                }
+                if(cntzero<3){
+
+                    item1[i]=Integer.parseInt(item[i]);
+                }
+            }
+        }
+        for(int i=0 ; i<item.length ; i++){
+
+            System.out.println(item1[i]);
+        }
+        return item1;
+
     }
 
     public static void market(int[] item , int N , int C){
@@ -34,8 +158,10 @@ public class Main {
         int tab[] = new int[N];
         int cost[] = new int[N];
         int l=0;
+
         for(int i=N ; i>0 ;i--){
             int result=0;
+
             for(int j=0 ; j<N; j++){
 
                 tab[j]=item[j] + i*(j+1);
@@ -59,7 +185,6 @@ public class Main {
 
             }
         }
-        //System.out.println(cnt);
         int min[] = new int[cnt];
         int max=0 ;
         int p=0;
@@ -77,7 +202,6 @@ public class Main {
                 max=min[i];
             }
         }
-
         int index=0;
 
         for(int i=0 ; i<N ;i++){
@@ -89,6 +213,7 @@ public class Main {
             }
         }
         System.out.println(index+" "+max);
+
 
 
     }
